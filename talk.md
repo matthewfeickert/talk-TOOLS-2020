@@ -302,30 +302,6 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
 .center.width-90[![HEPData_streamed_likelihoods](figures/carbon_patchset_example.png)]
 
 ---
-# Full likelihoods provide tools
-.kol-3-5[
-- Have seen in this workshop that using `pyhf` JSON workspaces can offer advantages
-- Tools for combination:
-   - 3L+compressed combination:
-      - ["Workspaces as JSON inputs to `pyhf` → speedy!"](https://indico.cern.ch/event/938782/contributions/4022820/) (live page C. Potter, J. Lorenz)
-      - c.f. [Carlo Gottardo live page contribution](https://indico.cern.ch/event/945936/contributions/3974713/)
-- Tools for reinterpretations:
-   - [pMSSM scans comparison of full and simplified likelihoods](https://indico.cern.ch/event/938782/contributions/4014052/) (live page E. Schanet, J. Lorenz)
-
-.center.width-45[[![pMSSM_model_scans_pyhf](figures/pMSSM_model_scans_pyhf.png)](https://indico.cern.ch/event/938782/contributions/4014052/)]
-]
-.kol-2-5[
-- Workflow currently focusing on using [`pyhf xml2json`](https://scikit-hep.org/pyhf/cli.html#pyhf-xml2json) to move from `HistFitter` workspace to `pyhf` JSON
-
-.center.width-90[[![histfitter_to_JSON_workflow](figures/histfitter_to_JSON_workflow.png)](https://indico.cern.ch/event/938782/contributions/4023781/)]
-
-.center[[First steps in pyhf for SUSY EWK 2L0J search](https://indico.cern.ch/event/938782/contributions/4023781/) (live page Daniel Noel)]
-
-- Might consider looking at [IRIS-HEP project `cabinetry`](https://iris-hep.org/projects/cabinetry.html) (lead dev: Alex Held, ATLAS)
-   - Still WIP but early feedback and contributions welcome
-]
-
----
 # Rapid adoption in ATLAS...
 <!--  -->
 .kol-1-3[
@@ -368,24 +344,6 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
 ]
 - Have produced comparison for direct stau production search ([ATLAS-SUSY-2018-04](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2018-04/)) [published likelihood](https://www.hepdata.net/record/ins1765529)
    - Compare simplified likelihood (`SModelS`) to full likelihood (`pyhf`)
-
----
-# Full likelihood plans and ideas
-
-.kol-2-5[
-- SUSY plans to .bold[continue to publish] full likelihoods for full Run 2
-- Consider .bold[open sourcing tools] to reduce full likelihoods to simplified likelihoods and publishing them
-   - c.f. [live page contribution from Eric Schanet and Jeanette Lorenz](https://indico.cern.ch/event/938782/contributions/4014052/)
-   - Sabine has asked for "next to simplified" as Gaussian approximation doesn't work so well, and the skew information is quite important
-- Consider a .bold[RECAST adjacent] framework: "pMSSMCast"
-- Nuisance parameter coordination and standarization (ask from Sabine)
-- If you have questions on making full likelihoods get in contact with the .bold[`pyhf` dev team]
-]
-.kol-3-5[
-.center.width-100[[![sabine_going_further_slide](figures/sabine_going_further_slide.png)](https://indico.cern.ch/event/957797/contributions/4026032/)]
-.center.width-100[[![sabine_thanks_slide](figures/sabine_thanks_slide.png)](https://indico.cern.ch/event/957797/contributions/4026032/)]
-.center.smaller[[Feedback on use of public Likelihoods](https://indico.cern.ch/event/957797/contributions/4026032/), Sabine Kraml]
-]
 
 ---
 # Use in analysis outside of particle physics
