@@ -190,38 +190,23 @@ $$
 
 .grid[
 .kol-1-2[
+.large[Exploit .bold[full gradient of the likelihood] with .bold[modern optimizers] to help speedup fit!]
 
 <br><br>
-Gain this through the frameworks creating _computational directed acyclic graphs_ and then applying the chain rule (to the operations)
-]
-.kol-1-2[
-.center.width-80[![DAG](figures/directed_acyclic_graph.png)]
-.center[Simple example graph]
-]
-]
-
-.footnote[[Image credit: Alan Du](http://www.columbia.edu/~ahd2125/post/2015/12/5/)]
-
----
-# Automatic differentiation
-
-With tensor library backends gain access to _exact (higher order) derivatives_ &mdash; accuracy is only limited by floating point precision
-
-$$
-\frac{\partial L}{\partial \mu}, \frac{\partial L}{\partial \theta_{i}}
-$$
-
-.grid[
-.kol-1-2[
-
-<br><br>
-Gain this through the frameworks creating _computational directed acyclic graphs_ and then applying the chain rule (to the operations)
+.large[Gain this through the frameworks creating _computational directed acyclic graphs_ and then applying the chain rule (to the operations)]
 ]
 .kol-1-2[
 .center.width-80[![DAG](figures/computational_graph.png)]
-.center[HistFactory likelihood]
 ]
 ]
+
+---
+# Tensor backends offer a computational advantage
+
+For visual comparison: the computational graph of the Higgs discovery analysis from the `C++` framework. Image courtesy of Kyle Cranmer.
+
+<br>
+.center.width-100[![Higgs_HistFactory_graph](figures/Higgs_HistFactory_graph.png)]
 
 ---
 # JSON spec fully describes the HistFactory model
@@ -403,23 +388,42 @@ Gain this through the frameworks creating _computational directed acyclic graphs
 ]
 
 ---
+# Use in analysis outside of particle physics
+
+.kol-1-3[
+<br>
+- [Public data](https://fermi.gsfc.nasa.gov/ssc/data/access/) from [Fermi Large Area Telescope (LAT)](https://glast.sites.stanford.edu/) analyzed by L. Heinrich et al.
+- The LAT is a high-energy gamma-ray telescope &mdash; the gamma-ray photons come from extreme cosmological events
+- Can represent the photons counts in the LAT as a binned model
+   - Here full-sky map visualized with [`healpy`](https://healpy.readthedocs.io/en/latest/index.html)'s Mollweide projection
+   - Think: 2d histogram with special binning
+]
+.kol-2-3[
+.center.width-100[![Fermi_LAT](figures/Fermi_LAT.png)]
+]
+
+---
 # Summary
 .kol-2-3[
-Through pyhf are able to provide:
-- Independent .bold[pure-Python implementation] of HistFactory + hypothesis testing
-- .bold[Efficient] computation with .bold[backend agnostic] API to tensor libraries
-- .bold[JSON specification] of likelihoods
-   - human/machine readable, versionable, HEPData friendly, orders of magnitude smaller
-   - long long term support
-- .bold[Bidirectional translation] of likelihood specifications
-   - ROOT workspaces ↔ JSON
-- Publication of the .bold[full likelihood] of physics analysis
-- Transparent .bold[open development] on GitHub
+.large[`pyhf` provides:]
+- .large[.bold[Accelerated] fitting library]
+   - reducing time to insight/inference!
+   - Hardware acceleration on GPUs and vectorized operations
+   - Backend agnostic Python API and CLI
+- .large[Flexible .bold[declarative] schema]
+   - JSON: ubiquitous, universal support, versionable
+- .large[Enabling technology for .bold[reinterpretation]]
+   - JSON Patch files for efficient computation of new signal models
+   - Unifying tool for theoretical and experimental physicists
+- .large[Project in growing .bold[Pythonic HEP ecosystem]]
+   - c.f. Jim Pivarski and Henry Schreiner's talks in High Performance Python track
+   - Ask us about Scikit-HEP and IRIS-HEP!
 ]
-.kol-1-3.center.width-100[
+.kol-1-3[
 <br>
-[![overlay_multiplex_contour](figures/overlay_multiplex_contour.png)](https://cds.cern.ch/record/2684863)
-[![pyhf_logo](https://iris-hep.org/assets/logos/pyhf-logo.png)](https://github.com/scikit-hep/pyhf)
+<br>
+<br>
+.center.width-100[[![pyhf_logo](https://iris-hep.org/assets/logos/pyhf-logo.png)](https://github.com/scikit-hep/pyhf)]
 ]
 
 ---
