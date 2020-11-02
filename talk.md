@@ -44,15 +44,68 @@ UCSC SCIPP
 ]
 
 ---
-# HistFactory
+# Goals of physics analysis at the LHC
 
-- A flexible p.d.f. template to build statistical models from binned distributions and data
-- Developed by Cranmer, Lewis, Moneta, Shibata, and Verkerke ([CERN-OPEN-2012-016](http://inspirehep.net/record/1236448))
-- Widely used by the HEP community for standard model measurements and BSM searches
-   <!-- - Show public summary plots and link to references that use HistFactory (multi b-jets for example) -->
+.kol-1-1[
+.kol-1-3.center[
+.width-100[[![ATLAS_Higgs_discovery](figures/ATLAS_Higgs_discovery.png)](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/HIGG-2012-27/)]
+Search for new physics
+]
+.kol-1-3.center[
+<br>
+.width-100[[![CMS-PAS-HIG-19-004](figures/CMS-PAS-HIG-19-004.png)](http://cms-results.web.cern.ch/cms-results/public-results/superseded/HIG-19-004/index.html)]
 
-.kol-1-1.center[
-.width-100[![HistFactory_uses](figures/HistFactory_result_examples.png)]
+<br>
+Make precision measurements
+]
+.kol-1-3.center[
+.width-110[[![SUSY-2018-31_limit](figures/SUSY-2018-31_limit.png)](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2018-31/)]
+
+Provide constraints on models through setting best limits
+]
+]
+
+- All require .bold[building statistical models] and .bold[fitting models] to data to perform statistical inference
+- Model complexity can be huge for complicated searches
+- **Problem:** Time to fit can be .bold[many hours]
+- .blue[Goal:] Empower analysts with fast fits and expressive models
+
+---
+# HistFactory Model
+
+- A flexible probability density function (p.d.f.) template to build statistical models in high energy physics (HEP)
+- Developed during work that lead to the Higgs discovery in 2011 [[CERN-OPEN-2012-016](http://inspirehep.net/record/1236448)]
+- Widely used by the HEP community for .bold[measurements of known physics] (Standard Model) and<br> .bold[searches for new physics] (beyond the Standard Model)
+
+.kol-2-5.center[
+.width-90[[![HIGG-2016-25](figures/HIGG-2016-25.png)](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/HIGG-2016-25/)]
+.bold[Standard Model]
+]
+.kol-3-5.center[
+.width-100[[![SUSY-2016-16](figures/SUSY-2016-16.png)](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2016-16/)]
+.bold[Beyond the Standard Model]
+]
+
+---
+# HistFactory Template
+
+$$
+f\left(\mathrm{data}\middle|\mathrm{parameters}\right) =  f\left(\vec{n}, \vec{a}\middle|\vec{\eta}, \vec{\chi}\right) = \color{blue}{\prod\_{c \\,\in\\, \textrm{channels}} \prod\_{b \\,\in\\, \textrm{bins}\_c} \textrm{Pois} \left(n\_{cb} \middle| \nu\_{cb}\left(\vec{\eta}, \vec{\chi}\right)\right)} \\,\color{red}{\prod\_{\chi \\,\in\\, \vec{\chi}} c\_{\chi} \left(a\_{\chi}\middle|\chi\right)}
+$$
+
+.bold[Use:] Multiple disjoint _channels_ (or regions) of binned distributions with multiple _samples_ contributing to each with additional (possibly shared) systematics between sample estimates
+
+.kol-1-2[
+.bold[Main pieces:]
+- .blue[Main Poisson p.d.f. for simultaneous measurement of multiple channels]
+- .katex[Event rates] $\nu\_{cb}$ (nominal rate $\nu\_{scb}^{0}$ with rate modifiers)
+- .red[Constraint p.d.f. (+ data) for "auxiliary measurements"]
+   - encode systematic uncertainties (e.g. normalization, shape)
+- $\vec{n}$: events, $\vec{a}$: auxiliary data, $\vec{\eta}$: unconstrained pars, $\vec{\chi}$: constrained pars
+]
+.kol-1-2[
+.center.width-100[[![SUSY-2016-16_annotated](figures/SUSY-2016-16.png)](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2016-16/)]
+.center[Example: .bold[Each bin] is separate (1-bin) _channel_,<br> each .bold[histogram] (color) is a _sample_ and share<br> a .bold[normalization systematic] uncertainty]
 ]
 
 ---
@@ -62,39 +115,17 @@ $$
 f\left(\vec{n}, \vec{a}\middle|\vec{\eta}, \vec{\chi}\right) = \color{blue}{\prod\_{c \\,\in\\, \textrm{channels}} \prod\_{b \\,\in\\, \textrm{bins}\_c} \textrm{Pois} \left(n\_{cb} \middle| \nu\_{cb}\left(\vec{\eta}, \vec{\chi}\right)\right)} \\,\color{red}{\prod\_{\chi \\,\in\\, \vec{\chi}} c\_{\chi} \left(a\_{\chi}\middle|\chi\right)}
 $$
 
-$$
-\nu\_{cb}(\vec{\eta}, \vec{\chi}) = \sum\_{s \\,\in\\, \textrm{samples}} \underbrace{\left(\sum\_{\kappa \\,\in\\, \vec{\kappa}} \kappa\_{scb}(\vec{\eta}, \vec{\chi})\right)}\_{\textrm{multiplicative}} \Bigg(\nu\_{scb}^{0}(\vec{\eta}, \vec{\chi}) + \underbrace{\sum\_{\Delta \\,\in\\, \vec{\Delta}} \Delta\_{scb}(\vec{\eta}, \vec{\chi})}\_{\textrm{additive}}\Bigg)
-$$
+Mathematical grammar for a simultaneous fit with
 
-.bold[Use:] Multiple disjoint _channels_ (or regions) of binned distributions with multiple _samples_ contributing to each with additional (possibly shared) systematics between sample estimates
-
-.bold[Main pieces:]
-- .blue[Main Poisson p.d.f. for simultaneous measurement of multiple channels]
-- .katex[Event rates] $\nu\_{cb}$ from nominal rate $\nu\_{scb}^{0}$ and rate modifiers $\kappa$ and $\Delta$
-- .red[Constraint p.d.f. (+ data) for "auxiliary measurements"]
-   - encoding systematic uncertainties (normalization, shape, etc)
-- $\vec{n}$: events, $\vec{a}$: auxiliary data, $\vec{\eta}$: unconstrained pars, $\vec{\chi}$: constrained pars
-
----
-# HistFactory Template
-
-$$
-f\left(\vec{n}, \vec{a}\middle|\vec{\eta}, \vec{\chi}\right) = \prod\_{c \\,\in\\, \textrm{channels}} \prod\_{b \\,\in\\, \textrm{bins}\_c} \textrm{Pois} \left(n\_{cb} \middle| \nu\_{cb}\left(\vec{\eta}, \vec{\chi}\right)\right) \prod\_{\chi \\,\in\\, \vec{\chi}} c\_{\chi} \left(a\_{\chi}\middle|\chi\right)
-$$
-<br>
+- .blue[multiple "channels"] (analysis regions, (stacks of) histograms)
+- each region can have .blue[multiple bins]
+- coupled to a set of .red[constraint terms]
 
 .center[.bold[This is a _mathematical_ representation!] Nowhere is any software spec defined]
+.center[.bold[Until now] (2018), the only implementation of HistFactory has been in a monolithic `C++` library used in HEP ([`ROOT`](https://root.cern.ch/))]
 
-.center[Until now, the only implementation of HistFactory has been in RooStats+RooFit]
-
-<br>
-
-- Preservation: Likelihood stored in the binary ROOT format
-   - Challenge for long-term preservation (i.e. HEPData)
-   - Why is a histogram needed for an array of numbers?
-- To start using HistFactory p.d.f.s first have to learn ROOT, RooFit, RooStats
-   - Problem for our theory colleagues (generally don't want to)
-- Difficult to use for reinterpretation
+.bold[`pyhf`: HistFactory in pure Python]
+.center.width-70[[![pyhf_PyPI](figures/pyhf_PyPI.png)](https://pypi.org/project/pyhf/)]
 
 ---
 # `pyhf`: HistFactory in pure Python
