@@ -151,20 +151,31 @@ Mathematical grammar for a simultaneous fit with
 ]
 
 ---
-# Machine Learning Frameworks for Computational Backends
+# Machine Learning Frameworks for Computation
 
 .grid[
 .kol-2-3[
-
-<br><br>
 - All numerical operations implemented in .bold[tensor backends] through an API of $n$-dimensional array operations
 - Using deep learning frameworks as computational backends allows for .bold[exploitation of auto differentiation (autograd) and GPU acceleration]
-- As huge buy in from industry we benefit for free as these frameworks are .bold[continually improved] by professional software engineers
+- As huge buy in from industry we benefit for free as these frameworks are .bold[continually improved] by professional software engineers (physicists are not)
+
+.kol-1-2.center[
+.width-90[![scaling_hardware](figures/scaling_hardware_annotated.png)]
 ]
-.kol-1-4.right[
-.width-100[![NumPy](figures/logos/NumPy_logo.svg)]
-.width-100[![PyTorch](figures/logos/Pytorch_logo.svg)]
-.width-100[![Tensorflow](figures/logos/TensorFlow_logo.svg)]
+.kol-1-2[
+<br>
+- Show hardware acceleration giving .bold[order of magnitude speedup] for some models!
+- Improvements over traditional
+   - 10 hrs to 30 min; 20 min to 10 sec
+]
+]
+.kol-1-4.center[
+.width-85[![NumPy](figures/logos/NumPy_logo.svg)]
+.width-85[![PyTorch](figures/logos/Pytorch_logo.svg)]
+.width-85[![Tensorflow](figures/logos/TensorFlow_logo.svg)]
+
+<br>
+.width-50[![JAX](figures/logos/JAX_logo.png)]
 ]
 ]
 
