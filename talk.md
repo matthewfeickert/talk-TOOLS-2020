@@ -278,9 +278,11 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
 ---
 # Likelihoods preserved on HEPData
 
-- Background-only model JSON stored
-- Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
-- Together are able to publish and fully preserve the full likelihood (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)] )
+- `pyhf` pallet:
+   - Background-only model JSON stored
+   - Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
+- Fully preserve and publish the full probability model and observations to give likelihood
+   - with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)]
 
 .kol-3-5[
 [.center.width-100[![HEPData_likelihoods](figures/HEPData_likelihoods.png)]](https://www.hepdata.net/record/ins1755298?version=3)
@@ -294,10 +296,11 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
 ---
 # ...can be used from HEPData
 
-- Background-only model JSON stored
-- Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
-<!-- - Together are able to publish and fully preserve the full likelihood (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)] ) -->
-- Together are able to publish and fully preserve the full likelihood (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2)] )
+- `pyhf` pallet:
+   - Background-only model JSON stored
+   - Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
+- Fully preserve and publish the full probability model and observations to give likelihood
+   - with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)]
 
 .center.width-90[![HEPData_streamed_likelihoods](figures/carbon_patchset_example.png)]
 
@@ -305,14 +308,15 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
 # Rapid adoption in ATLAS...
 <!--  -->
 .kol-1-3[
-- Four ATLAS analyses with full likelihoods published to HEPData
+- **Five** ATLAS analyses with full likelihoods published to HEPData
 - ATLAS SUSY will be continuing to publish full Run 2 likelihoods
 ]
 .kol-2-3[
 - direct staus, [doi:10.17182/hepdata.89408](https://doi.org/10.17182/hepdata.89408) (2019)
 - sbottom multi-b, [doi:10.17182/hepdata.91127](https://doi.org/10.17182/hepdata.91127) (2019)
 - 1Lbb, [doi:10.17182/hepdata.92006](https://doi.org/10.17182/hepdata.92006) (2019)
-- 3L eRJR, [doi:10.17182/hepdata.90607.v2](https://doi.org/10.17182/hepdata.90607.v2) (2020)
+- 3L eRJR, [doi:10.17182/hepdata.90607](https://doi.org/10.17182/hepdata.90607) (2020)
+- ss3L search, [doi:10.17182/hepdata.91214](https://doi.org/10.17182/hepdata.91214) (2020)
 ]
 .kol-1-1[
 .kol-1-1[
@@ -339,7 +343,7 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
 ]
 .kol-2-3[
 .center.width-100[[![sabine_workshop_slide](figures/sabine_workshop_slide.png)](https://inspirehep.net/literature/1814793)]
-.center.smaller[[Feedback on use of public Likelihoods](https://indico.cern.ch/event/957797/contributions/4026032/), Sabine Kraml<br>(Open Theory Feedback Session)]
+.center.smaller[[Feedback on use of public Likelihoods](https://indico.cern.ch/event/957797/contributions/4026032/), Sabine Kraml<br>(Exotics + SUSY Reinterpretations Workshop)]
 <!--  -->
 ]
 - Have produced comparison for direct stau production search ([ATLAS-SUSY-2018-04](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2018-04/)) [published likelihood](https://www.hepdata.net/record/ins1765529)
