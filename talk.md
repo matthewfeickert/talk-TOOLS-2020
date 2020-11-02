@@ -349,6 +349,16 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
    - Compare simplified likelihood (`SModelS`) to full likelihood (`pyhf`)
 
 ---
+# Core part of IRIS-HEP Analysis Systems pipeline
+.center[
+.width-75[[![analysis-systems-scope](figures/ecosystem.png)](https://iris-hep.org/as.html)]
+]
+- .large[Accelerating fitting (reducing time to .bold[insight] (statistical inference)!)] (`pyhf` + `cabinetry`)
+- .large[Flexible schema great for open likelihood .bold[preservation]]
+   - .normal[Likelihood serves as high information-density summary of analysis]
+- .large[An enabling technology for .bold[reinterpretation]] (`pyhf` + RECAST)
+
+---
 # Use in analysis outside of particle physics
 
 .kol-1-3[
