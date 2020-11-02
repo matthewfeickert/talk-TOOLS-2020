@@ -15,7 +15,7 @@ count: false
 November 3rd, 2020
 
 ---
-# pyhf team
+# `pyhf` team
 
 <br><br>
 
