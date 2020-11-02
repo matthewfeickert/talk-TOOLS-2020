@@ -393,13 +393,13 @@ td {
 /* Hack to get pyhf logo on */
 .title-slide:before {
     content: '';
-    /* background: url("https://iris-hep.org/assets/logos/pyhf-logo.png") no-repeat; */
-    background: url("../assets/logos/logo_ATLAS.png") no-repeat;
+    background: url("https://iris-hep.org/assets/logos/pyhf-logo.png") no-repeat;
+    /* background: url("../assets/logos/logo_experiment.png") no-repeat; */
     background-size: 100% 100%;
-    width: 243px;
-    height: 128px;
+    width: 160px;
+    height: 108px;
     position: absolute;
-    bottom: 0.8em;
+    bottom: 2em;
     right: 3.3em;
     display: inline-block;
 }
