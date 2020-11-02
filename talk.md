@@ -224,155 +224,182 @@ Gain this through the frameworks creating _computational directed acyclic graphs
 ]
 
 ---
-# Example pyhf JSON spec
+# JSON spec fully describes the HistFactory model
 
-.center[<a href="https://github.com/scikit-hep/pyhf/blob/81c9adb7abafa3a1e79c9b6fe75bc77095d01eaa/docs/examples/json/2-bin_1-channel.json">`JSON` defining a single channel, two bin counting experiment with systematics</a>]
-
-.center.width-80[![demo_JSON](figures/carbon_JSON_spec_annotated.png)]
-
-
----
-# From spec to model with Python API
-
-.center.width-70[![model_from_spec](figures/carbon_model_from_spec.png)]
-
-- Build workspace from spec
-- From workspace:
-   - Construct model
-   - Get data (observations + auxiliary measurements)
-
----
-# Interval estimation
-
-.kol-1-2[
-.bold[(pseudo)Frequentist confidence intervals]
-
-- Use the [$\\mathrm{CL}_{s}$ method](http://cds.cern.ch/record/451614) to construct the interval
-   - $\\mathrm{CL}_{s}$ results in [overcoverage by construction](https://indico.cern.ch/event/208901/contributions/1501047/) (at low signal-background discrimination)
-- pyhf offers an API & CLI for hypothesis test
-   - `$ pyhf cls spec.json`
-- Can *invert* the tests in order to obtain an interval with the correct coverage properties
-- pyhf plan is to factor out inference to another library and focus on modeling
-
-.bold[Bayesian credible intervals]
-
-- Currently don't support any API for this for same reason
-- c.f. [H. Dembinski, PyHEP 2019](https://indico.cern.ch/event/833895/contributions/3577810/)
+.kol-1-4.width-100[
+- Human & machine readable .bold[declarative] statistical models
+- Industry standard
+   - Will be with us forever
+- Parsable by every language
+   - Highly portable
+   - Bidirectional translation <br>with ROOT
+- Versionable and easily preserved
+   - JSON Schema [describing<br> HistFactory specification](https://scikit-hep.org/pyhf/likelihood.html#bibliography)
+   - Attractive for analysis preservation
+   - Highly compressible
 ]
-.kol-1-2[
-.center.width-100[![demo_CLI](figures/carbon_CLI_output.png)]
-.center[CLI to [`pyhf.utils.hypotest`](https://scikit-hep.org/pyhf/_generated/pyhf.utils.hypotest.html) returns  $\\mathrm{CL}_{s}$ values]
+.kol-3-4.center[
+.width-105[![demo_JSON](figures/carbon_JSON_spec_annotated.png)]
+
+.center[[`JSON` defining a single channel, two bin counting experiment with systematics](https://scikit-hep.org/pyhf/likelihood.html#toy-example)]
 ]
 
 ---
-# Interval estimation
-
-.kol-1-3[
-.bold[(pseudo)Frequentist confidence intervals]
-
-- Use the [$\\mathrm{CL}_{s}$ method](http://cds.cern.ch/record/451614) to construct the interval
-   - $\\mathrm{CL}_{s}$ results in [overcoverage by construction](https://indico.cern.ch/event/208901/contributions/1501047/) (at low signal-background discrimination)
-- pyhf offers an API & CLI for hypothesis test
-   - `$ pyhf cls spec.json`
-- Can *invert* the tests in order to obtain an interval with the correct coverage properties
-- pyhf plan is to factor out inference to another library and focus on modeling
-]
-.kol-2-3[
-.center.width-100[![demo_interval](figures/carbon_interval_estimation.png)]
-.left[From demo: invert tests to get expected ([Brazil band](https://arxiv.org/abs/1306.3117)) and observed $95\%\\, \\mathrm{CL}$ upper limits on $\mu$]
-]
-
----
-# How to combine likelihoods?
+# ATLAS validation and publication of likelihoods
 
 .kol-1-2[
-<br><br>
-- Essentially just concatenate them
-- As the channels are different, then just add the lists
-]
-.kol-1-2[
-.left.width-80[![demo_JSON](figures/carbon_JSON_spec_annotated.png)]
-]
-# Is there a pyhf utility to make this easy?
+.center.width-100[[![ATLAS_PUB_Note_title](figures/ATLAS_PUB_Note_title.png)](https://cds.cern.ch/record/2684863)]
 
-- Not yet, but there is a PR to add this functionality into the CLI
-   - [scikit-hep/pyhf PR #617](https://github.com/scikit-hep/pyhf/pull/617)
-- `$ pyhf spec combine spec1.json spec2.json`
+.center.width-90[[![overlay_multiplex_contour](figures/overlay_multiplex_contour.png)](https://cds.cern.ch/record/2684863)]
 
----
-# JSON Patch for new signal models
-<!--  -->
-.kol-1-2[
 <br>
-.center.width-90[![demo_JSON](figures/carbon_JSON_spec_short.png)]
-.center[Original model]
+.center[(ATLAS, 2019)]
 ]
 .kol-1-2[
-<!-- <br> -->
-.center.width-90[![patch_file](figures/carbon_patch.png)]
-.center[New Signal (JSON Patch file)]
-]
-.kol-1-1[
-.center.width-60[![demo_JSON](figures/carbon_patched_JSON.png)]
-.center[Reinterpretation]
+.center.width-100[[![CERN_news_story](figures/CERN_news_story.png)](https://home.cern/news/news/knowledge-sharing/new-open-release-allows-theorists-explore-lhc-data-new-way)]
+.center[(CERN, 2020)]
 ]
 
 ---
-# JSON Patch for new signal models
+# JSON Patch for signal model (reinterpretation)
 <!--  -->
-.center.width-60[![signal_reinterpretation](figures/carbon_reinterpretation.png)]
-.kol-1-2[
-.center.width-50[![measurement_cartoon](figures/measurement_cartoon.png)]
-.center[Original analysis (model A)]
+.center[JSON Patch gives ability to .bold[easily mutate model]]
+.center[Think: test a .bold[new theory] with a .bold[new patch]!]
+.center[(c.f. [Lukas Heinrich's RECAST talk from Snowmass 2021 Computational Frontier Workshop](https://indico.fnal.gov/event/43829/contributions/193817/))]
+<br>
+.center[Combined with RECAST gives powerful tool for .bold[reinterpretation studies]]
+<!--  -->
+.kol-1-5[
+<br>
+<br>
+<br>
+<br>
+.center.width-100[![measurement_cartoon](figures/measurement_cartoon.png)]
+.center[Signal model A]
 ]
-.kol-1-2[
-.center.width-50[![reinterpretation_cartoon](figures/reinterpretation_cartoon.png)]
-.center[Recast analysis (model B)]
+.kol-3-5[
+<!-- Using Perl style in Carbon -->
+.center.width-100[![signal_reinterpretation](figures/carbon_reinterpretation.png)]
 ]
-
+.kol-1-5[
+<br>
+<br>
+<br>
+<br>
+.center.width-100[![reinterpretation_cartoon](figures/reinterpretation_cartoon.png)]
+.center[Signal model B]
+]
 
 ---
 # Likelihoods preserved on HEPData
 
 - Background-only model JSON stored
-- Signal models stored as JSON Patch files
-- Together are able to fully preserve the full model (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.89408.v1%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.89408.v1/r2)] )
+- Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
+- Together are able to publish and fully preserve the full likelihood (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)] )
 
-[.center.width-70[![HEPData_likelihoods](figures/HEPData_likelihoods.png)]](https://www.hepdata.net/record/ins1748602)
+.kol-3-5[
+[.center.width-100[![HEPData_likelihoods](figures/HEPData_likelihoods.png)]](https://www.hepdata.net/record/ins1755298?version=3)
+]
+.kol-2-5[
+<br>
+<br>
+.center.width-100[[![carbon_tree_likelihood_archive](figures/carbon_tree_likelihood_archive.png)](https://www.hepdata.net/record/ins1755298?version=3)]
+]
 
 ---
-# ...can be streamed from HEPData
+# ...can be used from HEPData
 
 - Background-only model JSON stored
-- Signal models stored as JSON Patch files
-- Together are able to fully preserve the full model (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.89408.v1%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.89408.v1/r2)] )
+- Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
+<!-- - Together are able to publish and fully preserve the full likelihood (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)] ) -->
+- Together are able to publish and fully preserve the full likelihood (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2)] )
 
-.center.width-80[![HEPData_streamed_likelihoods](figures/carbon_HEPData_streamed_likelihoods.png)]
+.center.width-90[![HEPData_streamed_likelihoods](figures/carbon_patchset_example.png)]
 
 ---
-# Likelihood serialization and reproduction
-<!--  -->
-- ATLAS PUB note on the JSON schema for serialization and reproduction of results ([ATL-PHYS-PUB-2019-029](https://cds.cern.ch/record/2684863))
-   - Contours: .root[█] original ROOT+XML, .pyhf[█] pyhf JSON, .roundtrip[█] JSON converted back to ROOT+XML
-<!--  -->
-.right.width-80[
-[![flowchart](figures/process.svg)](https://cds.cern.ch/record/2684863)
+# Full likelihoods provide tools
+.kol-3-5[
+- Have seen in this workshop that using `pyhf` JSON workspaces can offer advantages
+- Tools for combination:
+   - 3L+compressed combination:
+      - ["Workspaces as JSON inputs to `pyhf` → speedy!"](https://indico.cern.ch/event/938782/contributions/4022820/) (live page C. Potter, J. Lorenz)
+      - c.f. [Carlo Gottardo live page contribution](https://indico.cern.ch/event/945936/contributions/3974713/)
+- Tools for reinterpretations:
+   - [pMSSM scans comparison of full and simplified likelihoods](https://indico.cern.ch/event/938782/contributions/4014052/) (live page E. Schanet, J. Lorenz)
+
+.center.width-45[[![pMSSM_model_scans_pyhf](figures/pMSSM_model_scans_pyhf.png)](https://indico.cern.ch/event/938782/contributions/4014052/)]
+]
+.kol-2-5[
+- Workflow currently focusing on using [`pyhf xml2json`](https://scikit-hep.org/pyhf/cli.html#pyhf-xml2json) to move from `HistFitter` workspace to `pyhf` JSON
+
+.center.width-90[[![histfitter_to_JSON_workflow](figures/histfitter_to_JSON_workflow.png)](https://indico.cern.ch/event/938782/contributions/4023781/)]
+
+.center[[First steps in pyhf for SUSY EWK 2L0J search](https://indico.cern.ch/event/938782/contributions/4023781/) (live page Daniel Noel)]
+
+- Might consider looking at [IRIS-HEP project `cabinetry`](https://iris-hep.org/projects/cabinetry.html) (lead dev: Alex Held, ATLAS)
+   - Still WIP but early feedback and contributions welcome
 ]
 
 ---
-# Likelihood serialization and reproduction
+# Rapid adoption in ATLAS...
 <!--  -->
-- ATLAS PUB note on the JSON schema for serialization and reproduction of results ([ATL-PHYS-PUB-2019-029](https://cds.cern.ch/record/2684863))
-   - Contours: .root[█] original ROOT+XML, .pyhf[█] pyhf JSON, .roundtrip[█] JSON converted back to ROOT+XML
-      - Overlay of contours nice visualization of near perfect agreement
-   - Serialized likelihood and reproduced results of ATLAS Run-2 search for sbottom quarks ([CERN-EP-2019-142](http://inspirehep.net/record/1748602)) and published to HEPData
-   - Shown to reproduce results but faster! .bold[ROOT:] 10+ hours .bold[pyhf:] < 30 minutes
-
-.kol-1-2.center.width-95[
-[![overlay_multiplex_contour](figures/overlay_multiplex_contour.png)](https://cds.cern.ch/record/2684863)
+.kol-1-3[
+- Four ATLAS analyses with full likelihoods published to HEPData
+- ATLAS SUSY will be continuing to publish full Run 2 likelihoods
 ]
-.kol-1-2.right.width-70[
-[![discrepancy](figures/discrepancy.png)](https://cds.cern.ch/record/2684863)
+.kol-2-3[
+- direct staus, [doi:10.17182/hepdata.89408](https://doi.org/10.17182/hepdata.89408) (2019)
+- sbottom multi-b, [doi:10.17182/hepdata.91127](https://doi.org/10.17182/hepdata.91127) (2019)
+- 1Lbb, [doi:10.17182/hepdata.92006](https://doi.org/10.17182/hepdata.92006) (2019)
+- 3L eRJR, [doi:10.17182/hepdata.90607.v2](https://doi.org/10.17182/hepdata.90607.v2) (2020)
+]
+.kol-1-1[
+.kol-1-1[
+.kol-1-2[
+.center.width-70[[![SUSY_EWK_3L_validation](figures/SUSY_RPV_HistFitter.png)](https://indico.cern.ch/event/905793/contributions/3811068/)]
+]
+.kol-1-2[
+.center.width-70[[![SUSY_EWK_3L_validation](figures/SUSY_RPV_pyhf.png)](https://indico.cern.ch/event/905793/contributions/3811068/)]
+]
+]
+.center.smaller[SUSY [EWK 3L RPV](https://atlas.cern/updates/physics-briefing/fantastic-decays-and-where-find-them) analysis ([ATLAS-CONF-2020-009](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CONFNOTES/ATLAS-CONF-2020-009/)): Exclusion curves as a function of mass and branching fraction to $Z$ bosons]
+]
+
+---
+# ...and by theory
+
+.kol-1-3[
+- `pyhf` likelihoods discussed in
+   - [Les Houches 2019 Physics at TeV Colliders: New Physics Working Group Report](https://inspirehep.net/literature/1782722)
+   - [Higgs boson potential at colliders: status and perspectives](https://inspirehep.net/literature/1757043)
+- [SModelS](https://smodels.github.io/) team has implemented a `SModelS`/`pyhf` interface [[arXiv:2009.01809](https://inspirehep.net/literature/1814793)]
+   - tool for interpreting simplified-model results from the LHC
+   - designed to be used by theorists
+]
+.kol-2-3[
+.center.width-100[[![sabine_workshop_slide](figures/sabine_workshop_slide.png)](https://inspirehep.net/literature/1814793)]
+.center.smaller[[Feedback on use of public Likelihoods](https://indico.cern.ch/event/957797/contributions/4026032/), Sabine Kraml<br>(Open Theory Feedback Session)]
+<!--  -->
+]
+- Have produced comparison for direct stau production search ([ATLAS-SUSY-2018-04](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2018-04/)) [published likelihood](https://www.hepdata.net/record/ins1765529)
+   - Compare simplified likelihood (`SModelS`) to full likelihood (`pyhf`)
+
+---
+# Full likelihood plans and ideas
+
+.kol-2-5[
+- SUSY plans to .bold[continue to publish] full likelihoods for full Run 2
+- Consider .bold[open sourcing tools] to reduce full likelihoods to simplified likelihoods and publishing them
+   - c.f. [live page contribution from Eric Schanet and Jeanette Lorenz](https://indico.cern.ch/event/938782/contributions/4014052/)
+   - Sabine has asked for "next to simplified" as Gaussian approximation doesn't work so well, and the skew information is quite important
+- Consider a .bold[RECAST adjacent] framework: "pMSSMCast"
+- Nuisance parameter coordination and standarization (ask from Sabine)
+- If you have questions on making full likelihoods get in contact with the .bold[`pyhf` dev team]
+]
+.kol-3-5[
+.center.width-100[[![sabine_going_further_slide](figures/sabine_going_further_slide.png)](https://indico.cern.ch/event/957797/contributions/4026032/)]
+.center.width-100[[![sabine_thanks_slide](figures/sabine_thanks_slide.png)](https://indico.cern.ch/event/957797/contributions/4026032/)]
+.center.smaller[[Feedback on use of public Likelihoods](https://indico.cern.ch/event/957797/contributions/4026032/), Sabine Kraml]
 ]
 
 ---
@@ -635,184 +662,6 @@ UCSC SCIPP
 ]
 ]
 
----
-# JSON spec fully describes the HistFactory model
-
-.kol-1-4.width-100[
-- Human & machine readable .bold[declarative] statistical models
-- Industry standard
-   - Will be with us forever
-- Parsable by every language
-   - Highly portable
-   - Bidirectional translation <br>with ROOT
-- Versionable and easily preserved
-   - JSON Schema [describing<br> HistFactory specification](https://scikit-hep.org/pyhf/likelihood.html#bibliography)
-   - Attractive for analysis preservation
-   - Highly compressible
-]
-.kol-3-4.center[
-.width-105[![demo_JSON](figures/carbon_JSON_spec_annotated.png)]
-
-.center[[`JSON` defining a single channel, two bin counting experiment with systematics](https://scikit-hep.org/pyhf/likelihood.html#toy-example)]
-]
-
----
-# ATLAS validation and publication of likelihoods
-
-.kol-1-2[
-.center.width-100[[![ATLAS_PUB_Note_title](figures/ATLAS_PUB_Note_title.png)](https://cds.cern.ch/record/2684863)]
-
-.center.width-90[[![overlay_multiplex_contour](figures/overlay_multiplex_contour.png)](https://cds.cern.ch/record/2684863)]
-
-<br>
-.center[(ATLAS, 2019)]
-]
-.kol-1-2[
-.center.width-100[[![CERN_news_story](figures/CERN_news_story.png)](https://home.cern/news/news/knowledge-sharing/new-open-release-allows-theorists-explore-lhc-data-new-way)]
-.center[(CERN, 2020)]
-]
-
----
-# JSON Patch for signal model (reinterpretation)
-<!--  -->
-.center[JSON Patch gives ability to .bold[easily mutate model]]
-.center[Think: test a .bold[new theory] with a .bold[new patch]!]
-.center[(c.f. [Lukas Heinrich's RECAST talk from Snowmass 2021 Computational Frontier Workshop](https://indico.fnal.gov/event/43829/contributions/193817/))]
-<br>
-.center[Combined with RECAST gives powerful tool for .bold[reinterpretation studies]]
-<!--  -->
-.kol-1-5[
-<br>
-<br>
-<br>
-<br>
-.center.width-100[![measurement_cartoon](figures/measurement_cartoon.png)]
-.center[Signal model A]
-]
-.kol-3-5[
-<!-- Using Perl style in Carbon -->
-.center.width-100[![signal_reinterpretation](figures/carbon_reinterpretation.png)]
-]
-.kol-1-5[
-<br>
-<br>
-<br>
-<br>
-.center.width-100[![reinterpretation_cartoon](figures/reinterpretation_cartoon.png)]
-.center[Signal model B]
-]
-
----
-# Likelihoods preserved on HEPData
-
-- Background-only model JSON stored
-- Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
-- Together are able to publish and fully preserve the full likelihood (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)] )
-
-.kol-3-5[
-[.center.width-100[![HEPData_likelihoods](figures/HEPData_likelihoods.png)]](https://www.hepdata.net/record/ins1755298?version=3)
-]
-.kol-2-5[
-<br>
-<br>
-.center.width-100[[![carbon_tree_likelihood_archive](figures/carbon_tree_likelihood_archive.png)](https://www.hepdata.net/record/ins1755298?version=3)]
-]
-
----
-# ...can be used from HEPData
-
-- Background-only model JSON stored
-- Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
-<!-- - Together are able to publish and fully preserve the full likelihood (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)] ) -->
-- Together are able to publish and fully preserve the full likelihood (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2)] )
-
-.center.width-90[![HEPData_streamed_likelihoods](figures/carbon_patchset_example.png)]
-
----
-# Full likelihoods provide tools
-.kol-3-5[
-- Have seen in this workshop that using `pyhf` JSON workspaces can offer advantages
-- Tools for combination:
-   - 3L+compressed combination:
-      - ["Workspaces as JSON inputs to `pyhf` → speedy!"](https://indico.cern.ch/event/938782/contributions/4022820/) (live page C. Potter, J. Lorenz)
-      - c.f. [Carlo Gottardo live page contribution](https://indico.cern.ch/event/945936/contributions/3974713/)
-- Tools for reinterpretations:
-   - [pMSSM scans comparison of full and simplified likelihoods](https://indico.cern.ch/event/938782/contributions/4014052/) (live page E. Schanet, J. Lorenz)
-
-.center.width-45[[![pMSSM_model_scans_pyhf](figures/pMSSM_model_scans_pyhf.png)](https://indico.cern.ch/event/938782/contributions/4014052/)]
-]
-.kol-2-5[
-- Workflow currently focusing on using [`pyhf xml2json`](https://scikit-hep.org/pyhf/cli.html#pyhf-xml2json) to move from `HistFitter` workspace to `pyhf` JSON
-
-.center.width-90[[![histfitter_to_JSON_workflow](figures/histfitter_to_JSON_workflow.png)](https://indico.cern.ch/event/938782/contributions/4023781/)]
-
-.center[[First steps in pyhf for SUSY EWK 2L0J search](https://indico.cern.ch/event/938782/contributions/4023781/) (live page Daniel Noel)]
-
-- Might consider looking at [IRIS-HEP project `cabinetry`](https://iris-hep.org/projects/cabinetry.html) (lead dev: Alex Held, ATLAS)
-   - Still WIP but early feedback and contributions welcome
-]
-
----
-# Rapid adoption in ATLAS...
-<!--  -->
-.kol-1-3[
-- Four ATLAS analyses with full likelihoods published to HEPData
-- ATLAS SUSY will be continuing to publish full Run 2 likelihoods
-]
-.kol-2-3[
-- direct staus, [doi:10.17182/hepdata.89408](https://doi.org/10.17182/hepdata.89408) (2019)
-- sbottom multi-b, [doi:10.17182/hepdata.91127](https://doi.org/10.17182/hepdata.91127) (2019)
-- 1Lbb, [doi:10.17182/hepdata.92006](https://doi.org/10.17182/hepdata.92006) (2019)
-- 3L eRJR, [doi:10.17182/hepdata.90607.v2](https://doi.org/10.17182/hepdata.90607.v2) (2020)
-]
-.kol-1-1[
-.kol-1-1[
-.kol-1-2[
-.center.width-70[[![SUSY_EWK_3L_validation](figures/SUSY_RPV_HistFitter.png)](https://indico.cern.ch/event/905793/contributions/3811068/)]
-]
-.kol-1-2[
-.center.width-70[[![SUSY_EWK_3L_validation](figures/SUSY_RPV_pyhf.png)](https://indico.cern.ch/event/905793/contributions/3811068/)]
-]
-]
-.center.smaller[SUSY [EWK 3L RPV](https://atlas.cern/updates/physics-briefing/fantastic-decays-and-where-find-them) analysis ([ATLAS-CONF-2020-009](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CONFNOTES/ATLAS-CONF-2020-009/)): Exclusion curves as a function of mass and branching fraction to $Z$ bosons]
-]
-
----
-# ...and by theory
-
-.kol-1-3[
-- `pyhf` likelihoods discussed in
-   - [Les Houches 2019 Physics at TeV Colliders: New Physics Working Group Report](https://inspirehep.net/literature/1782722)
-   - [Higgs boson potential at colliders: status and perspectives](https://inspirehep.net/literature/1757043)
-- [SModelS](https://smodels.github.io/) team has implemented a `SModelS`/`pyhf` interface [[arXiv:2009.01809](https://inspirehep.net/literature/1814793)]
-   - tool for interpreting simplified-model results from the LHC
-   - designed to be used by theorists
-]
-.kol-2-3[
-.center.width-100[[![sabine_workshop_slide](figures/sabine_workshop_slide.png)](https://inspirehep.net/literature/1814793)]
-.center.smaller[[Feedback on use of public Likelihoods](https://indico.cern.ch/event/957797/contributions/4026032/), Sabine Kraml<br>(Open Theory Feedback Session)]
-<!--  -->
-]
-- Have produced comparison for direct stau production search ([ATLAS-SUSY-2018-04](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2018-04/)) [published likelihood](https://www.hepdata.net/record/ins1765529)
-   - Compare simplified likelihood (`SModelS`) to full likelihood (`pyhf`)
-
----
-# Full likelihood plans and ideas
-
-.kol-2-5[
-- SUSY plans to .bold[continue to publish] full likelihoods for full Run 2
-- Consider .bold[open sourcing tools] to reduce full likelihoods to simplified likelihoods and publishing them
-   - c.f. [live page contribution from Eric Schanet and Jeanette Lorenz](https://indico.cern.ch/event/938782/contributions/4014052/)
-   - Sabine has asked for "next to simplified" as Gaussian approximation doesn't work so well, and the skew information is quite important
-- Consider a .bold[RECAST adjacent] framework: "pMSSMCast"
-- Nuisance parameter coordination and standarization (ask from Sabine)
-- If you have questions on making full likelihoods get in contact with the .bold[`pyhf` dev team]
-]
-.kol-3-5[
-.center.width-100[[![sabine_going_further_slide](figures/sabine_going_further_slide.png)](https://indico.cern.ch/event/957797/contributions/4026032/)]
-.center.width-100[[![sabine_thanks_slide](figures/sabine_thanks_slide.png)](https://indico.cern.ch/event/957797/contributions/4026032/)]
-.center.smaller[[Feedback on use of public Likelihoods](https://indico.cern.ch/event/957797/contributions/4026032/), Sabine Kraml]
-]
 
 ---
 # Summary
