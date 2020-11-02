@@ -1,7 +1,7 @@
 class: middle, center, title-slide
 count: false
 
-# Experience and Plans with Public Likelihoods
+# `pyhf`: pure-Python implementation of HistFactory with tensors and automatic differentiation
 
 <br>
 
@@ -10,9 +10,9 @@ count: false
 <br><br>
 [matthew.feickert@cern.ch](mailto:matthew.feickert@cern.ch)
 
-[ATLAS Exotics + SUSY Workshop 2020](https://indico.cern.ch/event/898965/contributions/3999143/)
+[Tools for High Energy Physics and Cosmology 2020 Workshop](https://indico.cern.ch/event/955391/contributions/4075505/)
 
-September 25th, 2020
+November 3rd, 2020
 
 ---
 # Why is the likelihood important?
