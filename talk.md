@@ -282,7 +282,7 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
    - Background-only model JSON stored
    - Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
 - Fully preserve and publish the full probability model and observations to give likelihood
-   - with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)]
+   - with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v3%2Fr3-blue.svg)](https://doi.org/10.17182/hepdata.90607.v3/r3)]
 
 .kol-3-5[
 [.center.width-100[![HEPData_likelihoods](figures/HEPData_likelihoods.png)]](https://www.hepdata.net/record/ins1755298)
@@ -299,7 +299,7 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
    - Background-only model JSON stored
    - Hundreds of signal model JSON Patches stored together as a [`pyhf` "patch set" file](https://scikit-hep.org/pyhf/_generated/pyhf.patchset.PatchSet.html)
 - Fully preserve and publish the full probability model and observations to give likelihood
-   - with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v2%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.90607.v2/r2)]
+   - with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.90607.v3%2Fr3-blue.svg)](https://doi.org/10.17182/hepdata.90607.v3/r3)]
 
 .center.width-90[![HEPData_streamed_likelihoods](figures/carbon_patchset_example.png)]
 
