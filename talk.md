@@ -142,8 +142,6 @@ Mathematical grammar for a simultaneous fit with
 ]
 <!--  -->
 .kol-1-1[
-- Has a JSON spec that .blue[fully] describes the HistFactory model
-   - JSON: Industry standard, parsable by every language, human & machine readable, versionable and easily preserved (HEPData is JSON)
 - Open source tool for all of HEP
    - Originated from a [DIANA/HEP](https://diana-hep.org/) project fellowship and now an [IRIS-HEP](https://iris-hep.org/projects/pyhf.html) supported Scikit-HEP project
    - Used for reinterpretation in phenomenology paper (DOI: [10.1007/JHEP04(2019)144](https://inspirehep.net/record/1698425))
