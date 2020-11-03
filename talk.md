@@ -143,9 +143,10 @@ Mathematical grammar for a simultaneous fit with
 <!--  -->
 .kol-1-1[
 - Open source tool for all of HEP
-   - Originated from a [DIANA/HEP](https://diana-hep.org/) project fellowship and now an [IRIS-HEP](https://iris-hep.org/projects/pyhf.html) supported Scikit-HEP project
-   - Used for reinterpretation in phenomenology paper (DOI: [10.1007/JHEP04(2019)144](https://inspirehep.net/record/1698425))
-   - Used internally in ATLAS for pMSSM SUSY large scale reinterpretation
+   - [IRIS-HEP](https://iris-hep.org/projects/pyhf.html) supported Scikit-HEP project
+   - Used for reinterpretation in phenomenology paper (DOI: [10.1007/JHEP04(2019)144](https://inspirehep.net/record/1698425)) and `SModelS`
+   - Used in ATLAS SUSY groups and for internal pMSSM SUSY large scale reinterpretation
+   - Maybe your experiment too!
 ]
 
 ---
