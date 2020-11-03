@@ -15,7 +15,7 @@ count: false
 November 3rd, 2020
 
 ---
-# pyhf team
+# `pyhf` team
 
 <br><br>
 
@@ -35,7 +35,7 @@ CERN
 Illinois
 ]
 .kol-1-3.center[
-.circle.width-80[![Giordon](figures/collaborators/stark.jpg)]
+.circle.width-75[![Giordon](figures/collaborators/stark.jpg)]
 
 [Giordon Stark](https://github.com/kratsg)
 
@@ -73,8 +73,8 @@ Provide constraints on models through setting best limits
 ---
 # HistFactory Model
 
-- A flexible probability density function (p.d.f.) template to build statistical models in high energy physics (HEP)
-- Developed during work that lead to the Higgs discovery in 2011 [[CERN-OPEN-2012-016](http://inspirehep.net/record/1236448)]
+- A flexible probability density function (p.d.f.) template to build statistical models in high energy physics
+- Developed in 2011 during work that lead to the Higgs discovery [[CERN-OPEN-2012-016](http://inspirehep.net/record/1236448)]
 - Widely used by the HEP community for .bold[measurements of known physics] (Standard Model) and<br> .bold[searches for new physics] (beyond the Standard Model)
 
 .kol-2-5.center[
@@ -142,12 +142,11 @@ Mathematical grammar for a simultaneous fit with
 ]
 <!--  -->
 .kol-1-1[
-- Has a JSON spec that .blue[fully] describes the HistFactory model
-   - JSON: Industry standard, parsable by every language, human & machine readable, versionable and easily preserved (HEPData is JSON)
 - Open source tool for all of HEP
-   - Originated from a [DIANA/HEP](https://diana-hep.org/) project fellowship and now an [IRIS-HEP](https://iris-hep.org/projects/pyhf.html) supported Scikit-HEP project
-   - Used for reinterpretation in phenomenology paper (DOI: [10.1007/JHEP04(2019)144](https://inspirehep.net/record/1698425))
-   - Used internally in ATLAS for pMSSM SUSY large scale reinterpretation
+   - [IRIS-HEP](https://iris-hep.org/projects/pyhf.html) supported Scikit-HEP project
+   - Used for reinterpretation in phenomenology paper (DOI: [10.1007/JHEP04(2019)144](https://inspirehep.net/record/1698425)) and `SModelS`
+   - Used in ATLAS SUSY groups and for internal pMSSM SUSY large scale reinterpretation
+   - Maybe your experiment too!
 ]
 
 ---
@@ -339,14 +338,15 @@ For visual comparison: the computational graph of the Higgs discovery analysis f
 - [SModelS](https://smodels.github.io/) team has implemented a `SModelS`/`pyhf` interface [[arXiv:2009.01809](https://inspirehep.net/literature/1814793)]
    - tool for interpreting simplified-model results from the LHC
    - designed to be used by theorists
+   - `SModelS` authors giving [tutorial later today](https://indico.cern.ch/event/955391/contributions/4084223/)!
 ]
 .kol-2-3[
 .center.width-100[[![sabine_workshop_slide](figures/sabine_workshop_slide.png)](https://inspirehep.net/literature/1814793)]
 .center.smaller[[Feedback on use of public Likelihoods](https://indico.cern.ch/event/957797/contributions/4026032/), Sabine Kraml<br>(ATLAS Exotics + SUSY Reinterpretations Workshop)]
 <!--  -->
 ]
-- Have produced comparison for direct stau production search ([ATLAS-SUSY-2018-04](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2018-04/)) [published likelihood](https://www.hepdata.net/record/ins1765529)
-   - Compare simplified likelihood (`SModelS`) to full likelihood (`pyhf`)
+- Have produced three comparisons to published ATLAS likelihoods: [ATLAS-SUSY-2018-04](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2018-04/), [ATLAS-SUSY-2018-31](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2018-31/), [ATLAS-SUSY-2019-08](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/PAPERS/SUSY-2019-08/)
+   - Compare simplified likelihood (bestSR) to full likelihood (`pyhf`) using `SModelS`
 
 ---
 # Core part of IRIS-HEP Analysis Systems pipeline
