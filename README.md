@@ -1,5 +1,7 @@
 # [`pyhf`: pure-Python implementation of HistFactory with tensors and automatic differentiation](https://indico.cern.ch/event/955391/contributions/4075505/)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4246056.svg)](https://doi.org/10.5281/zenodo.4246056)
+
 Talk given at the [Tools for High Energy Physics and Cosmology 2020 Workshop](https://indico.cern.ch/event/955391/)
 
 Viewable online [here](https://matthewfeickert.github.io/talk-TOOLS-2020/index.html)
